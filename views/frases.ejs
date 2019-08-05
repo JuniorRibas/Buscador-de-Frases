@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+ <html class="no-js"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Frases achadas</title>
+        <link type="text/css" href="../src/css.css">
+       <style>
+           .centro{
+            text-align: center
+        }
+        .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #1a02a3;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+        }
+        
+
+        /* Safari */
+        @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+        }
+        .centralizado {
+	        margin: 0 auto;
+            }
+
+       </style>
+    </head>
+    <body>
+        <div class="centro">
+                <div id="procurando">
+                    <h1>Procurando na net.....</h1>
+                    <div class="loader centralizado"></div>
+                </div>
+                <a href="/"><button id="btn" style="display: none" >Nova pesquisa</button></a>
+        
+       <table border="2" id="tabela" style="display:none">
+           <tr>
+               <td><strong>FRASES</strong></td>
+           </tr>
+           <% for (var i=0; i< frases.length;i++){%>
+           <tbody >
+                <td><%= frases[i]%></td>
+           </tbody>
+           <% }%>
+       </table>
+    </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script>
+                var tamanho = $('#tabela').html().length;
+                
+                if(tamanho > 150){
+                    $('#tabela').show();
+                    $('#procurando').hide();
+                    $('#btn').show();
+                    
+                }else{
+                    setTimeout(function(){
+                    $("#tabela").load("#tabela");
+                    window.location.reload();
+                    },2000)
+                }
+            
+            </script>
+    </body>
+</html>
